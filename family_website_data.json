@@ -1,0 +1,170 @@
+{
+  "contacts": [],
+  "photos": [
+    {
+      "id": 1,
+      "title": "Goa Beach Sunset",
+      "description": "Beautiful sunset during our 2023 family vacation to Goa. The kids built sandcastles while we watched the waves.",
+      "category": "vacations",
+      "file_path": "/placeholder.svg",
+      "photographer": "Priya Raina",
+      "location": "Goa, India",
+      "date_taken": "2023-12-15",
+      "tags": "beach,sunset,vacation,family",
+      "likes_count": 15,
+      "created_at": "2025-08-30T16:38:50.048Z",
+      "updated_at": "2025-08-30T16:38:50.052Z"
+    },
+    {
+      "id": 2,
+      "title": "Diwali Family Portrait",
+      "description": "Our traditional Diwali family photo in matching outfits. Everyone looked so elegant in their festive wear.",
+      "category": "festivals",
+      "file_path": "/placeholder.svg",
+      "photographer": "Timer Camera",
+      "location": "Home",
+      "date_taken": "2024-11-01",
+      "tags": "diwali,festival,family,traditional",
+      "likes_count": 23,
+      "created_at": "2025-08-30T16:38:50.052Z",
+      "updated_at": "2025-09-03T16:23:19.508Z"
+    },
+    {
+      "id": 3,
+      "title": "Arjun's Basketball Win",
+      "description": "Celebrating Arjun's team victory at the regional championship. So proud of our basketball star!",
+      "category": "daily",
+      "file_path": "/placeholder.svg",
+      "photographer": "Rajesh Raina",
+      "location": "Lincoln High School",
+      "date_taken": "2024-03-20",
+      "tags": "basketball,sports,victory,proud",
+      "likes_count": 18,
+      "created_at": "2025-08-30T16:38:50.052Z",
+      "updated_at": "2025-08-30T16:38:50.052Z"
+    },
+    {
+      "id": 4,
+      "title": "Anika's Art Exhibition",
+      "description": "Anika showcasing her environmental art at the university gallery. Her passion for nature shines through her work.",
+      "category": "daily",
+      "file_path": "/placeholder.svg",
+      "photographer": "Priya Raina",
+      "location": "UC Berkeley",
+      "date_taken": "2024-05-10",
+      "tags": "art,university,environment,exhibition",
+      "likes_count": 25,
+      "created_at": "2025-08-30T16:38:50.052Z",
+      "updated_at": "2025-08-30T16:38:50.052Z"
+    },
+    {
+      "id": 5,
+      "title": "Priya's Birthday Celebration",
+      "description": "Mom's surprise birthday party in the garden she loves so much. The flowers made the perfect backdrop.",
+      "category": "birthdays",
+      "file_path": "/placeholder.svg",
+      "photographer": "Rajesh Raina",
+      "location": "Home Garden",
+      "date_taken": "2024-07-22",
+      "tags": "birthday,garden,flowers,celebration",
+      "likes_count": 30,
+      "created_at": "2025-08-30T16:38:50.052Z",
+      "updated_at": "2025-08-30T16:38:50.052Z"
+    },
+    {
+      "id": 6,
+      "title": "Family Cooking Session",
+      "description": "Sunday morning cooking session where everyone helps make breakfast. Manish is surprisingly good at pancakes!",
+      "category": "daily",
+      "file_path": "/placeholder.svg",
+      "photographer": "Timer Camera",
+      "location": "Home Kitchen",
+      "date_taken": "2024-08-11",
+      "tags": "cooking,family,sunday,breakfast",
+      "likes_count": 12,
+      "created_at": "2025-08-30T16:38:50.052Z",
+      "updated_at": "2025-08-30T16:38:50.052Z"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "title": "Anil Kumar's Birthday",
+      "description": "Dad's special day! Celebrating our dedicated police officer and family guardian.",
+      "event_type": "birthday",
+      "person": "Anil Kumar",
+      "date": "2025-09-08",
+      "time": "6:00 PM",
+      "location": "Home",
+      "icon": "🛡️",
+      "color": "bg-blue-100 text-blue-700",
+      "created_at": "2025-08-30T16:38:50.052Z",
+      "updated_at": "2025-08-30T16:38:50.052Z"
+    },
+    {
+      "id": 2,
+      "title": "Babeeta's Birthday",
+      "description": "Mom's special day! Celebrating our loving homemaker and family foundation.",
+      "event_type": "birthday",
+      "person": "Babeeta Raina",
+      "date": "2025-10-07",
+      "time": "4:00 PM",
+      "location": "Home Garden",
+      "icon": "🌸",
+      "color": "bg-pink-100 text-pink-700",
+      "created_at": "2025-08-30T16:38:50.052Z",
+      "updated_at": "2025-08-30T16:38:50.052Z"
+    },
+    {
+      "id": 3,
+      "title": "Mansi's Birthday",
+      "description": "Sister's birthday celebration! Celebrating our successful IP Analyst.",
+      "event_type": "birthday",
+      "person": "Mansi Raina",
+      "date": "2025-09-15",
+      "time": "2:00 PM",
+      "location": "Local Park",
+      "icon": "👩‍💼",
+      "color": "bg-green-100 text-green-700",
+      "created_at": "2025-08-30T16:38:50.052Z",
+      "updated_at": "2025-08-30T16:38:50.052Z"
+    },
+    {
+      "id": 4,
+      "title": "Manish's Birthday",
+      "description": "Brother's birthday celebration! Celebrating our future AI engineer and academic topper.",
+      "event_type": "birthday",
+      "person": "Manish Raina",
+      "date": "2025-01-04",
+      "time": "7:00 PM",
+      "location": "Home",
+      "icon": "🤖",
+      "color": "bg-orange-100 text-orange-700",
+      "created_at": "2025-08-30T16:38:50.052Z",
+      "updated_at": "2025-08-30T16:38:50.052Z"
+    },
+    {
+      "id": 5,
+      "title": "Family Vacation - Goa",
+      "description": "Annual family vacation to the beautiful beaches of Goa.",
+      "event_type": "vacation",
+      "person": "Entire Family",
+      "date": "2025-12-20",
+      "time": "All Day",
+      "location": "Goa, India",
+      "icon": "🏖️",
+      "color": "bg-cyan-100 text-cyan-700",
+      "created_at": "2025-08-30T16:38:50.052Z",
+      "updated_at": "2025-08-30T16:38:50.052Z"
+    }
+  ],
+  "photo_likes": [
+    {
+      "id": 1,
+      "photo_id": 2,
+      "ip_address": "::1",
+      "created_at": "2025-09-03T16:23:19.500Z"
+    }
+  ],
+  "comments": []
+}
