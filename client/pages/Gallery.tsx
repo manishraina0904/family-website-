@@ -291,32 +291,32 @@ export function Gallery() {
   if (selectedAlbum && !selectedImage) {
     return (
       <Layout>
-        <div className="py-16 bg-background">
+        <div className="py-12 sm:py-20 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Album Header */}
             <div className="mb-8">
               <button
                 onClick={() => setSelectedAlbum(null)}
-                className="flex items-center gap-2 text-primary hover:text-primary/80 mb-4 btn-float"
+                className="flex items-center gap-2 text-primary hover:text-primary/80 mb-4 btn-float text-sm sm:text-base font-semibold"
               >
-                <ArrowLeft className="w-5 h-5" />
+                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                 Back to Albums
               </button>
               
               <div className="text-center">
-                <h1 className="text-4xl font-bold text-foreground mb-4 text-glow">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 text-glow">
                   {selectedAlbum.title}
                 </h1>
-                <p className="text-lg text-muted-foreground mb-4">
+                <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-4 max-w-2xl mx-auto leading-relaxed">
                   {selectedAlbum.description}
                 </p>
-                <div className="flex justify-center gap-4 text-sm text-muted-foreground">
+                <div className="flex flex-wrap justify-center gap-3 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
                   <span className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
+                    <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     {new Date(selectedAlbum.date).toLocaleDateString()}
                   </span>
                   <span className="flex items-center gap-1">
-                    <MapPin className="w-4 h-4" />
+                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     {selectedAlbum.location}
                   </span>
                   <span>
@@ -327,7 +327,7 @@ export function Gallery() {
             </div>
 
             {/* Photos Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {selectedAlbum.photos.map((photo: any) => (
                 <div
                   key={photo.id}
@@ -383,14 +383,14 @@ export function Gallery() {
 
   return (
     <Layout>
-      <div className="py-16 bg-background">
+      <div className="py-12 sm:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-4 text-glow">
+          <div className="text-center mb-10 sm:mb-12">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 text-glow">
               Family Photo Albums
             </h1>
-            <p className="text-lg text-muted-foreground mb-8">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
               Explore our collection of family memories organized by special moments and occasions.
             </p>
           </div>
@@ -399,23 +399,23 @@ export function Gallery() {
           <div className="mb-8 space-y-4">
             {/* Search Bar */}
             <div className="relative max-w-md mx-auto">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 sm:w-5 sm:h-5" />
               <input
                 type="text"
                 placeholder="Search albums..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-border rounded-lg bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full pl-9 sm:pl-10 pr-4 py-2 sm:py-2.5 text-xs sm:text-sm border border-border rounded-xl bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
             </div>
 
             {/* Category Filter */}
-            <div className="flex flex-wrap justify-center gap-2">
+            <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
               {categories.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
                     selectedCategory === category.id
                       ? 'bg-primary text-primary-foreground btn-glow'
                       : 'bg-muted text-muted-foreground hover:bg-muted/80 btn-float'
@@ -429,12 +429,12 @@ export function Gallery() {
 
           {/* Albums Grid */}
           {filteredAlbums.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-muted-foreground text-lg">No albums found matching your criteria.</p>
-              <p className="text-muted-foreground">Try adjusting your search or category filter.</p>
+            <div className="text-center py-16 sm:py-20">
+              <p className="text-muted-foreground text-base sm:text-lg">No albums found matching your criteria.</p>
+              <p className="text-muted-foreground text-xs sm:text-sm mt-1">Try adjusting your search or category filter.</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 mb-12">
               {filteredAlbums.map((album) => (
                 <div
                   key={album.id}
@@ -484,50 +484,50 @@ export function Gallery() {
 
           {/* Photo Modal */}
           {selectedImage && (
-            <div className="fixed inset-0 bg-black/90 flex items-center justify-center p-4 z-50">
-              <div className="max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="fixed inset-0 bg-black/90 flex items-center justify-center p-3 sm:p-6 z-50">
+              <div className="max-w-4xl w-full max-h-[92vh] overflow-y-auto rounded-2xl bg-card border border-border/60 shadow-2xl">
                 <div className="relative">
                   {/* Close Button */}
                   <button
                     onClick={() => setSelectedImage(null)}
-                    className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center z-10 btn-bounce"
+                    className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-black/60 hover:bg-black/80 text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center z-20 btn-bounce shadow-lg"
                   >
-                    <X className="w-6 h-6" />
+                    <X className="w-5 h-5 sm:w-6 sm:h-6" />
                   </button>
 
                   {/* Image */}
-                  <div className="relative bg-black rounded-lg overflow-hidden">
+                  <div className="relative bg-black rounded-t-2xl overflow-hidden flex items-center justify-center">
                     <img
                       src={selectedImage.file_path}
                       alt={selectedImage.title}
-                      className="w-full h-auto max-h-[70vh] object-contain"
+                      className="w-full h-auto max-h-[50vh] sm:max-h-[65vh] object-contain"
                     />
                   </div>
 
                   {/* Image Details */}
-                  <div className="bg-card rounded-lg mt-4 p-6">
-                    <div className="flex justify-between items-start mb-4">
+                  <div className="p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
                       <div>
-                        <h2 className="text-2xl font-bold text-foreground mb-2 text-glow">
+                        <h2 className="text-lg sm:text-2xl font-bold text-foreground mb-1 text-glow">
                           {selectedImage.title}
                         </h2>
-                        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
+                        <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground">
                           <span className="flex items-center gap-1">
-                            <Calendar className="w-4 h-4" />
+                            <Calendar className="w-3.5 h-3.5" />
                             {selectedImage.date_taken ? new Date(selectedImage.date_taken).toLocaleDateString() : 'Unknown date'}
                           </span>
                           {selectedImage.photographer && (
                             <span>📸 {selectedImage.photographer}</span>
                           )}
                           <span className="flex items-center gap-1">
-                            <Heart className="w-4 h-4" />
+                            <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" />
                             {selectedImage.likes_count || 0} likes
                           </span>
                         </div>
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 w-full sm:w-auto">
                         <button
-                          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg btn-bounce inline-flex items-center gap-2"
+                          className="flex-1 sm:flex-none justify-center bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold btn-bounce inline-flex items-center gap-2"
                           onClick={(e) => {
                             e.stopPropagation();
                             handleLikePhoto(selectedImage.id);
@@ -537,7 +537,7 @@ export function Gallery() {
                           Like
                         </button>
                         <button
-                          className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg btn-float inline-flex items-center gap-2"
+                          className="flex-1 sm:flex-none justify-center bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold btn-float inline-flex items-center gap-2"
                           onClick={(e) => {
                             e.stopPropagation();
                             handleDownloadPhoto(selectedImage);
@@ -549,7 +549,7 @@ export function Gallery() {
                       </div>
                     </div>
 
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                       {selectedImage.description}
                     </p>
                   </div>

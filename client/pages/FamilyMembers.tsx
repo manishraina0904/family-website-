@@ -8,6 +8,7 @@ import {
   Palette,
   Gamepad2,
   BookOpen,
+  ArrowRight,
 } from "lucide-react";
 import { useFamilyData } from "@/hooks/useFamilyData";
 
@@ -17,7 +18,10 @@ export function FamilyMembers() {
   if (loading) {
     return (
       <Layout>
-        <div className="py-16 text-center">Loading family members...</div>
+        <div className="py-20 text-center flex flex-col items-center justify-center">
+          <div className="animate-spin h-8 w-8 border-3 border-primary border-t-transparent rounded-full mb-4"></div>
+          <p className="text-muted-foreground font-medium">Loading family members...</p>
+        </div>
       </Layout>
     );
   }
@@ -25,81 +29,91 @@ export function FamilyMembers() {
   if (error) {
     return (
       <Layout>
-        <div className="py-16 text-center text-red-500">{error}</div>
+        <div className="py-20 text-center text-red-500 px-4">
+          <p className="font-semibold text-lg">{error}</p>
+        </div>
       </Layout>
     );
   }
 
-  // Assign icons dynamically (optional, like in your old code)
   const getIcons = (relation: string) => {
     switch (relation.toLowerCase()) {
       case "father":
-        return [<Code key="c" className="w-5 h-5" />, <BookOpen key="b" className="w-5 h-5" />, <Heart key="h" className="w-5 h-5" />];
+        return [<Code key="c" className="w-4 h-4 sm:w-5 sm:h-5" />, <BookOpen key="b" className="w-4 h-4 sm:w-5 sm:h-5" />, <Heart key="h" className="w-4 h-4 sm:w-5 sm:h-5" />];
       case "mother":
-        return [<Palette key="p" className="w-5 h-5" />, <Camera key="c" className="w-5 h-5" />, <Heart key="h" className="w-5 h-5" />];
+        return [<Palette key="p" className="w-4 h-4 sm:w-5 sm:h-5" />, <Camera key="c" className="w-4 h-4 sm:w-5 sm:h-5" />, <Heart key="h" className="w-4 h-4 sm:w-5 sm:h-5" />];
       case "sister":
-        return [<Code key="c" className="w-5 h-5" />, <Heart key="h" className="w-5 h-5" />, <BookOpen key="b" className="w-5 h-5" />];
+        return [<Code key="c" className="w-4 h-4 sm:w-5 sm:h-5" />, <Heart key="h" className="w-4 h-4 sm:w-5 sm:h-5" />, <BookOpen key="b" className="w-4 h-4 sm:w-5 sm:h-5" />];
       case "brother":
-        return [<Gamepad2 key="g" className="w-5 h-5" />, <Music key="m" className="w-5 h-5" />, <Code key="c" className="w-5 h-5" />];
+        return [<Gamepad2 key="g" className="w-4 h-4 sm:w-5 sm:h-5" />, <Music key="m" className="w-4 h-4 sm:w-5 sm:h-5" />, <Code key="c" className="w-4 h-4 sm:w-5 sm:h-5" />];
       default:
-        return [<Heart key="h" className="w-5 h-5" />];
+        return [<Heart key="h" className="w-4 h-4 sm:w-5 sm:h-5" />];
     }
   };
 
   return (
     <Layout>
-      <div className="py-16 bg-background">
+      <div className="py-12 sm:py-20 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-center text-foreground mb-4">
-            Our Family
-          </h1>
-          <p className="text-lg text-center text-muted-foreground mb-12">
-            Meet the Raina Family
-          </p>
+          <div className="text-center mb-10 sm:mb-16">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 text-glow">
+              Our Family Members
+            </h1>
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+              Get to know the pillars, dreams, and personalities that make the Raina home full of life and joy.
+            </p>
+          </div>
 
           {/* Family Members Grid */}
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {members.map((member) => (
               <Link
                 key={member.id}
                 to={`/family/${member.relation.toLowerCase()}`}
-                className="bg-card rounded-xl shadow-md overflow-hidden card-float group block"
+                className="bg-card rounded-2xl shadow-md overflow-hidden card-float group block border border-border/60 hover:border-primary/50 transition-all"
               >
-                <div className="flex">
-                  <div className="flex-1 p-6">
-                    <h3 className="text-2xl font-bold mb-1 text-foreground text-glow">
-                      {member.name}
-                    </h3>
-                    <p className="text-muted-foreground mb-4">
+                <div className="flex flex-col sm:flex-row h-full">
+                  {/* Photo container */}
+                  <div className="sm:w-44 md:w-48 h-56 sm:h-auto flex-shrink-0 bg-muted overflow-hidden relative">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute top-3 left-3 bg-primary/90 text-primary-foreground text-xs px-2.5 py-1 rounded-full font-semibold shadow sm:hidden">
                       {member.relation}
-                    </p>
-                    <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-                      {member.description}
-                    </p>
-                    <div className="flex space-x-2 mb-4">
-                      {getIcons(member.relation).map((icon) => (
-                        <div
-                          key={icon.key}
-                          className="text-primary group-hover:scale-110 transition-transform"
-                        >
-                          {icon}
-                        </div>
-                      ))}
                     </div>
-                    <span className="text-primary hover:text-primary/80 font-medium transition-all duration-200 inline-flex items-center gap-1 group/link">
-                      <span>Learn More</span>
-                      <span className="transform transition-transform group-hover:translate-x-1">
-                        →
-                      </span>
-                    </span>
                   </div>
-                  <div className="w-32 h-full">
-                    <div className="w-full h-full bg-gray-100 overflow-hidden">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
-                      />
+
+                  {/* Details */}
+                  <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="hidden sm:inline-block text-xs font-semibold uppercase tracking-wider text-primary mb-1">
+                        {member.relation}
+                      </div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors text-glow">
+                        {member.name}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground mb-4 line-clamp-3 leading-relaxed">
+                        {member.description}
+                      </p>
+                    </div>
+
+                    <div>
+                      <div className="flex items-center space-x-2.5 mb-4">
+                        {getIcons(member.relation).map((icon) => (
+                          <div
+                            key={icon.key}
+                            className="text-primary bg-primary/10 p-1.5 rounded-lg group-hover:scale-110 transition-transform"
+                          >
+                            {icon}
+                          </div>
+                        ))}
+                      </div>
+                      <span className="text-xs sm:text-sm font-semibold text-primary inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                        <span>Explore Profile</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </span>
                     </div>
                   </div>
                 </div>

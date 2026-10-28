@@ -134,52 +134,54 @@ export function Calendar() {
 
   return (
     <Layout>
-      <div className="py-16 bg-background">
+      <div className="py-12 sm:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-4 text-glow">
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 text-glow">
               Family Calendar
             </h1>
-            <p className="text-lg text-muted-foreground mb-6">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 max-w-xl mx-auto leading-relaxed">
               Birthdays, anniversaries, and special moments throughout the year
             </p>
             <button
               onClick={() => setShowAddEventModal(true)}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg font-semibold btn-glow inline-flex items-center gap-2"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-semibold btn-glow inline-flex items-center gap-2 text-xs sm:text-sm"
             >
-              <Plus className="w-5 h-5" />
+              <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
               Add Event
             </button>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Calendar */}
             <div className="lg:col-span-2">
-              <div className="bg-card rounded-xl shadow-lg p-6">
+              <div className="bg-card rounded-2xl shadow-md p-3.5 sm:p-6 border border-border/60">
                 {/* Calendar Header */}
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center justify-between mb-4 sm:mb-6">
                   <button
                     onClick={() => navigateMonth('prev')}
-                    className="p-2 hover:bg-muted rounded-lg transition-colors btn-bounce"
+                    className="p-1.5 sm:p-2 hover:bg-muted rounded-xl transition-colors btn-bounce"
+                    aria-label="Previous month"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
-                  <h2 className="text-2xl font-bold text-glow">
+                  <h2 className="text-lg sm:text-2xl font-bold text-glow">
                     {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
                   </h2>
                   <button
                     onClick={() => navigateMonth('next')}
-                    className="p-2 hover:bg-muted rounded-lg transition-colors btn-bounce"
+                    className="p-1.5 sm:p-2 hover:bg-muted rounded-xl transition-colors btn-bounce"
+                    aria-label="Next month"
                   >
                     <ChevronRight className="w-5 h-5" />
                   </button>
                 </div>
 
                 {/* Week Days */}
-                <div className="grid grid-cols-7 gap-1 mb-2">
+                <div className="grid grid-cols-7 gap-1 mb-1 sm:mb-2 text-center">
                   {weekDays.map(day => (
-                    <div key={day} className="p-3 text-center text-sm font-medium text-muted-foreground">
+                    <div key={day} className="p-1 sm:p-2 text-[11px] sm:text-sm font-semibold text-muted-foreground">
                       {day}
                     </div>
                   ))}
@@ -187,14 +189,14 @@ export function Calendar() {
 
                 {/* Calendar Days */}
                 {loading ? (
-                  <div className="flex items-center justify-center py-20">
+                  <div className="flex items-center justify-center py-16 sm:py-20">
                     <div className="text-center">
-                      <div className="animate-spin h-8 w-8 border-2 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
-                      <p className="text-muted-foreground">Loading events...</p>
+                      <div className="animate-spin h-8 w-8 border-2 border-primary border-t-transparent rounded-full mx-auto mb-3"></div>
+                      <p className="text-xs sm:text-sm text-muted-foreground font-medium">Loading events...</p>
                     </div>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-7 gap-1">
+                  <div className="grid grid-cols-7 gap-1 sm:gap-1.5">
                     {getDaysInMonth(currentDate).map((day, index) => {
                       const dayEvents = getEventsForDate(day);
                       const hasEvents = dayEvents.length > 0;
@@ -202,26 +204,51 @@ export function Calendar() {
                       return (
                         <div
                           key={index}
-                          className={`min-h-[80px] p-2 border border-border rounded-lg transition-all duration-200 ${
-                            day ? 'hover:bg-muted/50 cursor-pointer' : ''
-                          } ${hasEvents ? 'bg-primary/5' : ''}`}
+                          className={`min-h-[52px] sm:min-h-[72px] md:min-h-[82px] p-1 sm:p-1.5 border border-border/70 rounded-xl transition-all duration-200 flex flex-col justify-between ${
+                            day ? 'hover:bg-muted/50 cursor-pointer' : 'opacity-25 bg-muted/10'
+                          } ${hasEvents ? 'bg-primary/5 border-primary/30' : ''}`}
                         >
                           {day && (
                             <>
-                              <div className="font-medium text-sm mb-1">{day}</div>
-                              <div className="space-y-1">
+                              <div className="font-semibold text-xs sm:text-sm leading-none">{day}</div>
+                              
+                              {/* Mobile: dots view */}
+                              <div className="sm:hidden flex flex-wrap gap-1 justify-center my-0.5">
+                                {dayEvents.slice(0, 3).map(event => (
+                                  <span
+                                    key={event.id}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setSelectedEvent(event);
+                                    }}
+                                    className="w-1.5 h-1.5 rounded-full bg-primary inline-block"
+                                    title={event.title}
+                                  />
+                                ))}
+                                {dayEvents.length > 3 && (
+                                  <span className="text-[8px] text-muted-foreground font-bold leading-none">
+                                    +{dayEvents.length - 3}
+                                  </span>
+                                )}
+                              </div>
+
+                              {/* Tablet & Desktop: chip view */}
+                              <div className="hidden sm:block space-y-1 mt-1">
                                 {dayEvents.slice(0, 2).map(event => (
                                   <div
                                     key={event.id}
-                                    onClick={() => setSelectedEvent(event)}
-                                    className={`text-xs p-1 rounded text-center ${event.color} cursor-pointer hover:opacity-80 transition-opacity`}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setSelectedEvent(event);
+                                    }}
+                                    className={`text-[10px] md:text-xs p-1 rounded-md text-left truncate ${event.color} cursor-pointer hover:opacity-85 transition-opacity font-medium`}
                                   >
-                                    <span className="mr-1">{event.icon}</span>
-                                    {event.title.length > 12 ? event.title.substring(0, 12) + '...' : event.title}
+                                    <span className="mr-0.5">{event.icon}</span>
+                                    <span>{event.title}</span>
                                   </div>
                                 ))}
                                 {dayEvents.length > 2 && (
-                                  <div className="text-xs text-center text-muted-foreground">
+                                  <div className="text-[9px] text-center text-muted-foreground font-semibold">
                                     +{dayEvents.length - 2} more
                                   </div>
                                 )}
